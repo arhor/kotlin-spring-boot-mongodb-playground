@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  gift-certificates-db:
+    container_name: gift-certificates-db
+    image: mongo:4.4
+    ports:
+      - "27017:27017"
+    tmpfs:
+      - "/data/db"
+    env_file:
+      - ".env.local"
