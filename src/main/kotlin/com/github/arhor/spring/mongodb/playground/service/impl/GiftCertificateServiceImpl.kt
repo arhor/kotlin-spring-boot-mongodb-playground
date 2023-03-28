@@ -1,6 +1,7 @@
 package com.github.arhor.spring.mongodb.playground.service.impl
 
 import com.github.arhor.spring.mongodb.playground.data.repository.GiftCertificateRepository
+import com.github.arhor.spring.mongodb.playground.data.repository.TagRepository
 import com.github.arhor.spring.mongodb.playground.service.GiftCertificateService
 import com.github.arhor.spring.mongodb.playground.service.dto.GiftCertificateCreateDTO
 import com.github.arhor.spring.mongodb.playground.service.dto.GiftCertificateReturnDTO
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service
 class GiftCertificateServiceImpl(
     private val giftCertificateMapper: GiftCertificateMapper,
     private val giftCertificateRepository: GiftCertificateRepository,
+    private val tagRepository: TagRepository,
 ) : GiftCertificateService {
 
     override fun getGiftCertificatesPaged(page: Int, size: Int): List<GiftCertificateReturnDTO> {
