@@ -8,6 +8,6 @@ interface GiftCertificateService {
     fun getGiftCertificatesPaged(page: Int, size: Int): List<GiftCertificateReturnDTO>
     fun getGiftCertificateById(certificateId: String): GiftCertificateReturnDTO
     fun createGiftCertificate(dto: GiftCertificateCreateDTO): GiftCertificateReturnDTO
-    fun updateGiftCertificate(dto: GiftCertificateUpdateDTO): GiftCertificateReturnDTO
+    fun updateGiftCertificate(certificateId: String, dto: GiftCertificateUpdateDTO): GiftCertificateReturnDTO
     fun deleteGiftCertificateById(certificateId: String)
 }

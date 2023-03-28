@@ -48,9 +48,12 @@ class GiftCertificateController(
         return ResponseEntity.created(location).body(createdCertificate)
     }
 
-    @PatchMapping
-    fun updateGiftCertificate(@RequestBody dto: GiftCertificateUpdateDTO): GiftCertificateReturnDTO {
-        return giftCertificateService.updateGiftCertificate(dto)
+    @PatchMapping("/{certificateId}")
+    fun updateGiftCertificate(
+        @PathVariable certificateId: String,
+        @RequestBody dto: GiftCertificateUpdateDTO,
+    ): GiftCertificateReturnDTO {
+        return giftCertificateService.updateGiftCertificate(certificateId, dto)
     }
 
     @DeleteMapping("/{certificateId}")

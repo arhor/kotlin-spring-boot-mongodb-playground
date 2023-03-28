@@ -31,6 +31,9 @@ spring:
   output:
     ansi:
       enabled: always
+  data:
+    mongodb:
+      auto-index-creation: true
 
 application-props:
   retry-attempts: 5

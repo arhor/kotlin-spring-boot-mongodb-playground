@@ -3,6 +3,8 @@ package com.github.arhor.spring.mongodb.playground.config
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.data.auditing.DateTimeProvider
+import org.springframework.data.mongodb.MongoDatabaseFactory
+import org.springframework.data.mongodb.MongoTransactionManager
 import org.springframework.data.mongodb.config.EnableMongoAuditing
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories
 import org.springframework.transaction.annotation.EnableTransactionManagement
@@ -29,5 +31,10 @@ class ConfigureDatabase {
     @Bean
     fun currentDateTimeProvider(currentDateTimeSupplier: Supplier<LocalDateTime>) = DateTimeProvider {
         Optional.of(currentDateTimeSupplier.get())
+    }
+
+    @Bean
+    fun transactionManager(databaseFactory: MongoDatabaseFactory): MongoTransactionManager {
+        return MongoTransactionManager(databaseFactory)
     }
 }
