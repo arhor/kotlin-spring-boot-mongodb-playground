@@ -43,11 +43,6 @@ class TagController(
         @RequestParam(defaultValue = DEFAULT_PAGE) page: Int,
         @RequestParam(defaultValue = DEFAULT_SIZE) size: Int,
     ): List<TagReturnDTO> {
-        return tagService.getTags(page, size)
-    }
-
-    companion object {
-        private const val DEFAULT_PAGE = "1"
-        private const val DEFAULT_SIZE = "10"
+        return tagService.getTagsPaged(page, size)
     }
 }

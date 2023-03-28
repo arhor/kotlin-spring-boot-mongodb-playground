@@ -34,7 +34,7 @@ class TagServiceImpl(
             ?: throw EntityNotFoundException("Tag", "id = $tagId")
     }
 
-    override fun getTags(page: Int, size: Int): List<TagReturnDTO> {
+    override fun getTagsPaged(page: Int, size: Int): List<TagReturnDTO> {
         val pageRequest = PageRequest.of(page.asZeroBasedIndex(), size)
         val pagedResult = tagRepository.findAll(pageRequest)
 

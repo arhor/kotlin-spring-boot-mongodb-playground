@@ -7,5 +7,5 @@ interface TagService {
     fun createNewTag(dto: TagCreateDTO): TagReturnDTO
     fun deleteTagById(tagId: String)
     fun getTagById(tagId: String): TagReturnDTO
-    fun getTags(page: Int, size: Int): List<TagReturnDTO>
+    fun getTagsPaged(page: Int, size: Int): List<TagReturnDTO>
 }
