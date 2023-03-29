@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("io.spring.dependency-management")
+    id("org.graalvm.buildtools.native")
     id("org.jetbrains.kotlin.jvm")
     id("org.jetbrains.kotlin.kapt")
     id("org.jetbrains.kotlin.plugin.spring")
@@ -16,6 +17,19 @@ java {
     }
 }
 
+graalvmNative {
+    binaries {
+        named("main") {
+            javaLauncher.set(
+                javaToolchains.launcherFor {
+                    languageVersion.set(JavaLanguageVersion.of(17))
+                    vendor.set(JvmVendorSpec.matching("GraalVM Community"))
+                }
+            )
+        }
+    }
+}
+
 repositories {
     mavenCentral()
 }
@@ -23,9 +37,6 @@ repositories {
 configurations {
     compileOnly {
         extendsFrom(annotationProcessor.get())
-    }
-    implementation {
-        exclude(group = "org.springframework.boot", module = "spring-boot-starter-tomcat")
     }
     testImplementation {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
@@ -52,11 +63,10 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
     implementation("org.springframework.boot:spring-boot-starter-aop")
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+    implementation("org.springframework.boot:spring-boot-starter-logging")
     implementation("org.springframework.boot:spring-boot-starter-validation")
-    implementation("org.springframework.boot:spring-boot-starter-undertow")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.retry:spring-retry")
-    implementation("org.springframework.session:spring-session-data-mongodb")
 
     testImplementation("com.ninja-squad:springmockk:${property("versions.spring-mockk")}")
     testImplementation("org.springframework.boot:spring-boot-starter-test")

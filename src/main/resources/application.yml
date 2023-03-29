@@ -48,9 +48,3 @@ spring:
     import:
       - optional:file:.env.local[.properties]
       - optional:../file:.env.local[.properties]
-  jmx:
-    enabled: true
-  devtools:
-    restart:
-      poll-interval: 5s
-      quiet-period: 1s
